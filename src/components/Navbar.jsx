@@ -7,6 +7,23 @@ import { logoutUser } from "../features/auth/authSlice";
 import { resetCart } from "../features/cart/cartSlice";
 import ThemeToggle from "./ThemeToggle";
 
+// Small pill showing which kind of account is logged in, so it's never
+// ambiguous whether you're browsing as a buyer or managing as a seller.
+function RoleBadge({ role }) {
+  const isSeller = role === "seller";
+  return (
+    <span
+      className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${
+        isSeller
+          ? "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300"
+          : "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300"
+      }`}
+    >
+      {isSeller ? "Seller" : "Buyer"}
+    </span>
+  );
+}
+
 function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,7 +53,7 @@ function Navbar() {
           onClick={() => setMenuOpen(false)}
           className="text-xl font-bold tracking-tight text-indigo-600 dark:text-indigo-400"
         >
-          Ecom
+          ShopFreak
         </Link>
 
         {/* Desktop nav */}
@@ -65,12 +82,18 @@ function Navbar() {
           )}
 
           {user ? (
-            <button
-              onClick={handleLogout}
-              className="rounded-md bg-gray-900 px-3 py-1.5 text-sm text-white transition-colors hover:bg-gray-700 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-white"
-            >
-              Logout
-            </button>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1.5 text-sm text-gray-700 dark:text-gray-300">
+                <span>Hi, {user.name.split(" ")[0]}</span>
+                <RoleBadge role={user.role} />
+              </div>
+              <button
+                onClick={handleLogout}
+                className="rounded-md bg-gray-900 px-3 py-1.5 text-sm text-white transition-colors hover:bg-gray-700 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-white"
+              >
+                Logout
+              </button>
+            </div>
           ) : (
             <div className="flex items-center gap-3">
               <Link to="/login" className={linkClass}>
@@ -130,12 +153,18 @@ function Navbar() {
           )}
 
           {user ? (
-            <button
-              onClick={handleLogout}
-              className="mt-1 rounded-md bg-gray-900 px-3 py-2 text-left text-sm text-white dark:bg-gray-100 dark:text-gray-900"
-            >
-              Logout
-            </button>
+            <>
+              <div className="flex items-center gap-1.5 px-2 py-2 text-sm text-gray-700 dark:text-gray-300">
+                <span>Hi, {user.name.split(" ")[0]}</span>
+                <RoleBadge role={user.role} />
+              </div>
+              <button
+                onClick={handleLogout}
+                className="mt-1 rounded-md bg-gray-900 px-3 py-2 text-left text-sm text-white dark:bg-gray-100 dark:text-gray-900"
+              >
+                Logout
+              </button>
+            </>
           ) : (
             <>
               <Link

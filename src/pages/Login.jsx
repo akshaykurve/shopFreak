@@ -34,7 +34,10 @@ function Login() {
   return (
     <div className="mx-auto flex min-h-[70vh] max-w-sm items-center">
       <div className="w-full rounded-xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8 dark:border-gray-800 dark:bg-gray-900">
-        <h1 className="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-100">Log in</h1>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Log in</h1>
+        <p className="mb-6 text-sm text-gray-500 dark:text-gray-400">
+          Works for both buyer and seller accounts — your account type was set at sign-up.
+        </p>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input

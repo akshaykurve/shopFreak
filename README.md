@@ -1,6 +1,6 @@
-# ecom-frontend
+# ShopFreak (ecom-frontend)
 
-React + Redux Toolkit frontend for the e-commerce assignment, consuming [ecom-api-with-auth](../ecom-api-with-auth). Buyer/seller auth, product browsing with per-size stock, and a cart.
+React + Redux Toolkit frontend for **ShopFreak**, consuming [ecom-api-with-auth](../ecom-api-with-auth). Buyer/seller auth, product browsing with per-size stock, and a cart.
 
 ## Setup
 
